@@ -1,0 +1,28 @@
+{"frames": {
+
+"yellowbird1.png":
+{
+	"frame": {"x":1,"y":1,"w":80,"h":79},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":0,"w":80,"h":79},
+	"sourceSize": {"w":81,"h":79}
+},
+"yellowbird2.png":
+{
+	"frame": {"x":83,"y":1,"w":80,"h":79},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":0,"w":80,"h":79},
+	"sourceSize": {"w":81,"h":79}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "yellowbird.png",
+	"format": "RGBA8888",
+	"size": {"w":164,"h":81},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:3973195523b74f1e27a46988fb114914:14fb344be5121e36bb6685d5ae4efb46:6bed6d1dcdbc802b321efe375e67b3fd$"
+}
+}

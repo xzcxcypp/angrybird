@@ -1,0 +1,28 @@
+{"frames": {
+
+"猪2.png":
+{
+	"frame": {"x":1,"y":1,"w":161,"h":147},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":161,"h":147},
+	"sourceSize": {"w":161,"h":147}
+},
+"猪3.png":
+{
+	"frame": {"x":164,"y":1,"w":160,"h":147},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":160,"h":147},
+	"sourceSize": {"w":161,"h":147}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "pig.png",
+	"format": "RGBA8888",
+	"size": {"w":325,"h":149},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:334c27c0157ac8fa14547ff1014a1a88:c041e7712f4d6ac451ea16d43f77f4af:4dd13c7db2d2fc02b6406b8a7f7d5ecc$"
+}
+}
