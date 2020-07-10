@@ -8,6 +8,9 @@ import "../"
 
 // scene with the main menu
 Scene{
+//    property alias musicrunning:timerMusic.running
+    property alias music:ambienceMusic
+
     anchors.fill: parent
     id: menuScene
     width: 960
@@ -16,24 +19,24 @@ Scene{
 
     signal playPressed
 
-    // play background music
-//    BackgroundMusic {
-//        loops: SoundEffect.Infinite
-//        volume: 0.35
-//        id: ambienceMusic
-//        // an ogg file is not playable on windows, because the extension is not supported!
-//        source: "../../assets/snd/title_theme.mp3"
-//    }
+    //play background music
+    BackgroundMusic {
+        loops: SoundEffect.Infinite
+        volume: 0.35
+        id: ambienceMusic
+        // an ogg file is not playable on windows, because the extension is not supported!
+        source: "../../assets/snd/title_theme.mp3"
+    }
 
-//    // timer plays the background music
-//    Timer {
-//        id: timerMusic
-//        interval: 100; running: true; repeat: true;
-//        onTriggered: {
-//            ambienceMusic.play()
-//            running = false
-//        }
-//    }
+//     timer plays the background music
+    Timer {
+        id: timerMusic
+        interval: 100; running: true; repeat: true;
+        onTriggered: {
+            ambienceMusic.play()
+            running = false
+        }
+    }
 
 
     Rectangle{

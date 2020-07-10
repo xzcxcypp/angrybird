@@ -5,9 +5,6 @@ import QtQuick 2.0
 
 
 EntityBase {
-    signal hasdisappeared
-    signal hasclicked
-
     id:redBird
     property alias image:redImage
     property alias body: collider.body
@@ -57,10 +54,10 @@ EntityBase {
 
         onLinearVelocityChanged: {
             var speed = collider.linearVelocity.x*collider.linearVelocity.x+collider.linearVelocity.y*collider.linearVelocity.y
-            if(isContact == true && speed <= 0){
-                toRemove = ["redbird", entityId]
-                entityManager.removeEntitiesByFilter(toRemove)
-                hasdisappeared()
+            if(isContact == true && speed <= 1){
+                exist = false
+
+                time.running = true
             }
         }
 
@@ -69,10 +66,25 @@ EntityBase {
         }
     }
 
+    Timer{
+        id:time
+        interval: 1000
+        running: false
+        onTriggered: {
+            toRemove = ["redbird", entityId]
+            entityManager.removeEntitiesByFilter(toRemove)
+        }
+    }
+
+    property bool exist: true
+
     property int beginposx
     property int beginposy
     property int endposx
     property int endposy
+
+
+    property bool isfly: false
 
     MouseArea{
         anchors.fill: redBird.image
@@ -108,7 +120,6 @@ EntityBase {
         }
 
         onPressed: {
-            hasclicked()
             beginposx = redBird.x
             beginposy = redBird.y
             endposx = redBird.x
@@ -121,12 +132,8 @@ EntityBase {
             var distance = Math.sqrt(Math.pow(horizontaldistance,2)+Math.pow(verticaldistance,2))
             var horizontalspeed = horizontaldistance * 10
             var verticalspeed = verticaldistance * 10
-            upline.points=[{"x":53, "y":container.height-145},
-                           {"x":beginposx, "y":beginposy+20}
-                    ]
-            downline.points=[{"x":100, "y":container.height-145},
-                             {"x":beginposx+25, "y":beginposy+20}
-                    ]
+
+            isfly = true
 
             redBird.fly(horizontalspeed,verticalspeed)
         }

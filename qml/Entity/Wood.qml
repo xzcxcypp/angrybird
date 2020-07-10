@@ -5,6 +5,7 @@ EntityBase {
     property alias bodyType: collider.bodyType
     property alias woodrotation:wood.rotation
     property alias density:collider.density
+    property alias friction:collider.friction
 
     function ready(){
         collider.bodyType = Body.Dynamic

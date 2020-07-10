@@ -2,11 +2,10 @@ import Felgo 3.0
 import QtQuick 2.0
 
 EntityBase {
-    property alias body: collider.body
     id:slingshot
     width: 60
     height: 90
-    entityId: "slingshot1"
+    entityId: "slingshot"
     entityType: "slingshot"
 
 

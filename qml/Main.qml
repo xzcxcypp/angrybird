@@ -55,10 +55,15 @@ GameWindow {
             timerrunning = false
             modelScene.timerrunning = true
             gamewindow.state = "model"
+            selectLeversScene1.wonopacity = 0
+            selectLeversScene1.lossopacity = 0
         }
         onLevelpressed:{
             timerrunning = false
+            gameScene01.resetgame()
             gamewindow.state = "game1"
+            menuScene.music.source = "../assets/snd/game1.mp3"
+            menuScene.music.play()
         }
 
     }
@@ -70,37 +75,50 @@ GameWindow {
             timerrunning = false
             modelScene.timerrunning = true
             gamewindow.state = "model"
+            selectLevelsScene2.wonopacity = 0
+            selectLevelsScene2.lossopacity = 0
         }
         onLevelpressed:{
             timerrunning = false
+            gameScene02.resetgame()
             gamewindow.state = "game2"
+            menuScene.music.source = "../assets/snd/game2.mp3"
+            menuScene.music.play()
         }
 
     }
-
 
     GameScene01{
         id:gameScene01
 
         onHaslossed: {
-            gamewindow.state = "Level1"
             selectLeversScene1.wonopacity = 0
             selectLeversScene1.lossopacity = 1
-            gameScene01.resetgame()
+            gameScene01.linerunning = false
+            selectLeversScene1.timerrunning = true
+            gamewindow.state = "Level1"
+            menuScene.music.source = "../assets/snd/title_theme.mp3"
+            menuScene.music.play()
         }
 
         onHaswon: {
-            gamewindow.state = "Level1"
             selectLeversScene1.wonopacity = 1
             selectLeversScene1.lossopacity = 0
-            gameScene01.resetgame()
+            gameScene01.linerunning = false
+            selectLeversScene1.timerrunning = true
+            gamewindow.state = "Level1"
+            menuScene.music.source = "../assets/snd/title_theme.mp3"
+            menuScene.music.play()
         }
 
         onBackpressed:{
-            gamewindow.state = "Level1"
             selectLeversScene1.wonopacity = 0
             selectLeversScene1.lossopacity = 0
-            gameScene01.resetgame()
+            gameScene01.linerunning = false
+            selectLeversScene1.timerrunning = true
+            gamewindow.state = "Level1"
+            menuScene.music.source = "../assets/snd/title_theme.mp3"
+            menuScene.music.play()
         }
 
     }
@@ -110,21 +128,32 @@ GameWindow {
 
         onHaslossed: {
             gamewindow.state = "Level2"
+            gameScene02.linerunning = false
+            selectLevelsScene2.timerrunning = true
             selectLevelsScene2.wonopacity=0
             selectLevelsScene2.lossopacity = 1
-            gameScene02.resetgame()
+            menuScene.music.source = "../assets/snd/title_theme.mp3"
+            menuScene.music.play()
         }
 
         onHaswon: {
             gamewindow.state = "Level2"
+            gameScene02.linerunning = false
+            selectLevelsScene2.timerrunning = true
             selectLevelsScene2.wonopacity = 1
             selectLevelsScene2.lossopacity = 0
-            gameScene02.resetgame()
+            menuScene.music.source = "../assets/snd/title_theme.mp3"
+            menuScene.music.play()
         }
 
         onBackpressed:{
+            selectLevelsScene2.wonopacity = 0
+            selectLevelsScene2.lossopacity = 0
+            gameScene02.linerunning = false
+            selectLevelsScene2.timerrunning = true
             gamewindow.state = "Level2"
-            gameScene02.resetgame()
+            menuScene.music.source = "../assets/snd/title_theme.mp3"
+            menuScene.music.play()
         }
 
     }

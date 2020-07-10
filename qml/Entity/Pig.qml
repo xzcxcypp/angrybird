@@ -6,6 +6,8 @@ import Felgo 3.0
 EntityBase {
     signal isdisappeared
 
+    property alias image:pigImage
+
     property var toRemove: null
     property alias body: collider.body
     property bool isappear: true
@@ -15,6 +17,8 @@ EntityBase {
 
     id:smallpig
     entityType: "pig"
+
+    property bool exist: true
 
     Image {
         id: pigImage
@@ -39,11 +43,39 @@ EntityBase {
 
         fixture.onBeginContact: {
             var speed = collider.linearVelocity.x*collider.linearVelocity.x+collider.linearVelocity.y*collider.linearVelocity.y
-            if(speed>1000){
-                toRemove = [entityType,entityId]
-                entityManager.removeEntitiesByFilter(toRemove)
-                isdisappeared()
+            if(speed>400){
+                exist = false
+                time.running = true
+                voice.running = true
             }
         }
     }
+
+    Timer{
+        id:voice
+        interval: 0
+        running: false
+        repeat: false
+        onTriggered: {
+            music.play()
+        }
+    }
+
+    Timer{
+        id:time
+        interval: 1000
+        running: false
+        repeat: false
+        onTriggered: {
+
+            toRemove = [entityType,entityId]
+            entityManager.removeEntitiesByFilter(toRemove)
+        }
+    }
+
+    SoundEffect{
+        id:music
+        source: "../../assets/snd/Death.wav"
+    }
+
 }

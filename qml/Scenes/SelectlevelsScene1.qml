@@ -203,7 +203,6 @@ SceneBase{
                         opacity: 0.5
 
                         MenuButton{
-                            // property int  level: index+1
                             anchors.centerIn: parent
                             width:38
                             height: 38
@@ -224,6 +223,8 @@ SceneBase{
                 }
             }
         }
+
+        //information display(loss or win)
         Text {
             id: lossinformation
             text: qsTr("You loss")
@@ -234,6 +235,7 @@ SceneBase{
             anchors.top: parent.top
             anchors.topMargin: 100
         }
+
         Text {
             id: woninformation
             text: qsTr("You won")

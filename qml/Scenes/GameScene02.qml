@@ -4,16 +4,20 @@ import "../Entity"
 import "../fly"
 import "../common"
 
-//SceneBase
 SceneBase{
     signal haswon
     signal haslossed
     signal backpressed
 
+    property alias linerunning:line.running
+
     width: 960
     height: 640
     id: gamescene
     anchors.fill: parent
+
+    property int linepointx: 72
+    property int linepointy: 480
 
     property var toRemove : "NULL"
     property int usetime: 0
@@ -24,20 +28,9 @@ SceneBase{
 
     EntityManager {
         id: entityManager
-        entityContainer: scene//指定哪个QML项是使用EntityManager创建的实体的父项,通常是场景项。
+        entityContainer: container//指定哪个QML项是使用EntityManager创建的实体的父项,通常是场景项。
 
     }
-
-    property bool firstredbird: true
-    property bool firstyellowbird: true
-    property bool secondyellowbird: true
-    property bool firstpig: true
-    property bool secondpig: true
-    property bool thirdpig: true
-    property bool forthpig: true
-    property bool fifthpig: true
-    property bool sixthpig: true
-    property bool seventhpig: true
 
     Scene {
         anchors.fill: gamescene
@@ -95,257 +88,10 @@ SceneBase{
                 positionIterations: 5
             }
 
-            Redbird{
-                id:redBird
-                entityId:"bird1"
-                x:72
-                y:container.height-160
-                onHasdisappeared: {
-                    gamescene.firstredbird = false
-                    yellowbird.ready()
-                }
-            }
-
-            Pig{
-                anchors.horizontalCenter: wood1.horizontalCenter
-                entityType: "pig1"
-                id:thepig1
-                y:container.height-102
-                onIsdisappeared: {
-                    gamescene.firstpig = false
-                }
-            }
-
-            Pig{
-                anchors.horizontalCenter: wood4.horizontalCenter
-                entityType: "pig2"
-                id:thepig2
-                y:container.height-202
-                onIsdisappeared: {
-                    gamescene.secondpig = false
-                }
-            }
-
-            Pig{
-                anchors.horizontalCenter: wood8.horizontalCenter
-                entityType: "pig3"
-                id:thepig3
-                y:container.height-102
-                onIsdisappeared: {
-                    gamescene.thirdpig = false
-                }
-            }
-
-            Pig{
-                anchors.horizontalCenter: wood11.horizontalCenter
-                entityType: "pig4"
-                id:thepig4
-                y:container.height-202
-                onIsdisappeared: {
-                    gamescene.forthpig = false
-                }
-            }
-
-            Pig{
-                width: 20
-                height: 20
-                anchors.horizontalCenter: wood7.horizontalCenter
-                entityType: "pig5"
-                id:thepig5
-                y:container.height-310
-                onIsdisappeared: {
-                    gamescene.fifthpig = false
-                }
-            }
-
-            Pig{
-                width: 20
-                height: 20
-                anchors.horizontalCenter: wood14.horizontalCenter
-                entityType: "pig6"
-                id:thepig6
-                y:container.height-310
-                onIsdisappeared: {
-                    gamescene.sixthpig = false
-                }
-            }
-
-            Pig{
-                entityType: "pig7"
-                id:thepig7
-                y:container.height-92
-                x:669
-                onIsdisappeared: {
-                    gamescene.seventhpig = false
-                }
-            }
-
-            Yellowbird{
-                entityType: "yellowBird1"
-                width: 30
-                height: 30
-                id:yellowbird
-                x:200
-                y:container.height-120
-                onHasdisappeared: {
-                    gamescene.firstyellowbird = false
-                    yellowbird1.ready()
-                }
-            }
-
-            Yellowbird{
-                entityType: "yellowBird2"
-                width: 30
-                height: 30
-                id:yellowbird1
-                x:150
-                y:container.height-120
-                onHasdisappeared: {
-                    gamescene.secondyellowbird = false
-                }
-            }
-
             Slingshot{
                 x:50
                 y:container.height-150
                 id:theslingshot
-            }
-
-            Wood{
-                id:wood1
-                x:500
-                y:container.height-70
-            }
-
-            Wood{
-                id:wood2
-                width: 100
-                woodrotation: 90
-                x:510
-                y:container.height-170
-            }
-
-            Wood{
-                id:wood3
-                width: 100
-                woodrotation: 90
-                x:620
-                y:container.height-170
-            }
-
-            Wood{
-                id:wood4
-                x:500
-                y:container.height-180
-            }
-
-            Wood{
-                id:wood5
-                width: 100
-                woodrotation: 90
-                x:510
-                y:container.height-280
-            }
-
-            Wood{
-                id:wood6
-                width: 100
-                woodrotation: 90
-                x:620
-                y:container.height-280
-            }
-
-            Wood{
-                id:wood7
-                x:500
-                y:container.height-290
-            }
-
-            Wood{
-                id:wood8
-                x:750
-                y:container.height-70
-            }
-
-            Wood{
-                id:wood9
-                width: 100
-                woodrotation: 90
-                x:760
-                y:container.height-170
-            }
-
-            Wood{
-                id:wood10
-                width: 100
-                woodrotation: 90
-                x:870
-                y:container.height-170
-            }
-
-            Wood{
-                id:wood11
-                density: 5
-                x:750
-                y:container.height-180
-            }
-
-            Wood{
-                id:wood12
-                width: 100
-                woodrotation: 90
-                x:760
-                y:container.height-280
-            }
-
-            Wood{
-                id:wood13
-                width: 100
-                woodrotation: 90
-                x:870
-                y:container.height-280
-            }
-
-            Wood{
-                id:wood14
-                x:750
-                y:container.height-290
-            }
-
-            Wood{
-                id:wood15
-                density: 0.1
-                width: 100
-                woodrotation: 120
-                x:562
-                y:container.height-380
-            }
-
-            Wood{
-                id:wood16
-                density: 0.1
-                width: 100
-                woodrotation: 60
-                x:570
-                y:container.height-385
-            }
-
-            Wood{
-                id:wood17
-                density: 0.1
-                width: 100
-                woodrotation: 120
-                x:812
-                y:container.height-380
-            }
-
-            Wood{
-                id:wood18
-                density: 0.1
-                width: 100
-                woodrotation: 60
-                x:820
-                y:container.height-385
             }
 
             LineItem {
@@ -354,7 +100,7 @@ SceneBase{
                 lineWidth: 6
                 points: [
                     {"x":53, "y":container.height-145},
-                    {"x":redBird.x, "y":redBird.y+20}
+                    {"x":linepointx, "y":linepointy+20}
                 ]
             }
 
@@ -364,7 +110,7 @@ SceneBase{
                 color: "brown"
                 points: [
                     {"x":100, "y":container.height-145},
-                    {"x":redBird.x+25, "y":redBird.y+20}
+                    {"x":linepointx+25, "y":linepointy+20}
                 ]
             }
 
@@ -373,20 +119,6 @@ SceneBase{
                 text: "time:"+usetime
                 color: "white"
                 anchors.horizontalCenter: parent.horizontalCenter
-            }
-
-            Timer{
-                interval: 1000
-                running: true
-                repeat: true
-                onTriggered: {
-                    usetime++
-                    if(gamescene.firstpig == false && gamescene.secondpig == false && gamescene.thirdpig == false && gamescene.forthpig == false && gamescene.fifthpig == false && gamescene.sixthpig == false && gamescene.seventhpig == false){
-                        haswon()
-                    }else if(gamescene.firstredbird == false && gamescene.firstyellowbird == false && gamescene.secondyellowbird == false){
-                        haslossed()
-                    }
-                }
             }
 
             EntityBase {
@@ -506,6 +238,7 @@ SceneBase{
                 entityType: "ground"
                 width: 20
                 height:container.height
+                opacity: 0
                 anchors {
                     bottom: container.bottom
                     right: container.right
@@ -529,6 +262,7 @@ SceneBase{
                 entityType: "ground"
                 width: 20
                 height:container.height
+                opacity: 0
                 anchors {
                     bottom: container.bottom
                     left: container.left
@@ -568,7 +302,262 @@ SceneBase{
             }
         }
     }
+
+    property bool firstredbird: true
+    property bool firstyellowbird: true
+    property bool secondyellowbird: true
+    property bool firstpig: true
+    property bool secondpig: true
+    property bool thirdpig: true
+    property bool forthpig: true
+    property bool fifthpig: true
+    property bool sixthpig: true
+    property bool seventhpig: true
+
+    property var resetfirstredbird: null
+    property var resetfirstyellowbird: null
+    property var resetsecondyellowbird: null
+    property var resetfirstpig: null
+    property var resetsecondpig: null
+    property var resetthirdpig: null
+    property var resetforthpig: null
+    property var resetfifthpig: null
+    property var resetsixthpig: null
+    property var resetseventhpig: null
+
+
+    Timer{
+        id:check
+        interval: 1000
+        running: false
+        repeat: true
+        onTriggered: {
+            if(gamescene.firstpig == false && gamescene.secondpig == false && gamescene.thirdpig == false && gamescene.forthpig == false && gamescene.fifthpig == false && gamescene.sixthpig == false && seventhpig == false){
+                haswon()
+            }else if(gamescene.firstredbird == false && gamescene.firstyellowbird == false && gamescene.secondyellowbird == false){
+                haslossed()
+            }
+        }
+    }
+
+    Timer{
+        id:firstredchange
+        interval: 1000
+        repeat: true
+        running: false
+        onTriggered: {
+            if((entityManager.getEntityById(resetfirstredbird)).exist === false){
+                (entityManager.getEntityById(resetfirstyellowbird)).ready()
+                firstredchange.running = false
+                firstredbird = false
+            }
+        }
+    }
+
+    Timer{
+        id:firstyellowchange
+        interval: 1000
+        repeat: true
+        running: false
+        onTriggered: {
+            if((entityManager.getEntityById(resetfirstyellowbird)).exist === false){
+                (entityManager.getEntityById(resetsecondyellowbird)).ready()
+                firstyellowchange.running = false
+                firstyellowbird = false
+            }
+        }
+    }
+
+    Timer{
+        id:secondyellowchange
+        interval: 1000
+        repeat: true
+        running: false
+        onTriggered: {
+            if((entityManager.getEntityById(resetsecondyellowbird)).exist === false){
+                secondyellowchange.running = false
+                secondyellowbird = false
+            }
+        }
+    }
+
+    Timer{
+        id:firstpigchange
+        interval: 1000
+        repeat: true
+        running: false
+        onTriggered: {
+            if((entityManager.getEntityById(resetfirstpig)).exist === false){
+                firstpigchange.running = false
+                firstpig = false
+            }
+        }
+    }
+
+    Timer{
+        id:secondpigchange
+        interval: 1000
+        repeat: true
+        running: false
+        onTriggered: {
+            if((entityManager.getEntityById(resetsecondpig)).exist === false){
+                secondpigchange.running = false
+                secondpig = false
+            }
+        }
+    }
+
+    Timer{
+        id:thirdpigchange
+        interval: 1000
+        repeat: true
+        running: false
+        onTriggered: {
+            if((entityManager.getEntityById(resetthirdpig)).exist === false){
+                thirdpigchange.running = false
+                thirdpig = false
+            }
+        }
+    }
+
+    Timer{
+        id:forthpigchange
+        interval: 1000
+        repeat: true
+        running: false
+        onTriggered: {
+            if((entityManager.getEntityById(resetforthpig)).exist === false){
+                forthpigchange.running = false
+                forthpig = false
+            }
+        }
+    }
+
+    Timer{
+        id:fifthpigchange
+        interval: 1000
+        repeat: true
+        running: false
+        onTriggered: {
+            if((entityManager.getEntityById(resetfifthpig)).exist === false){
+                fifthpigchange.running = false
+                fifthpig = false
+            }
+        }
+    }
+
+    Timer{
+        id:sixthpigchange
+        interval: 1000
+        repeat: true
+        running: false
+        onTriggered: {
+            if((entityManager.getEntityById(resetsixthpig)).exist === false){
+                sixthpigchange.running = false
+                sixthpig = false
+            }
+        }
+    }
+
+    Timer{
+        id:seventhpigchange
+        interval: 1000
+        repeat: true
+        running: false
+        onTriggered: {
+            if((entityManager.getEntityById(resetseventhpig)).exist === false){
+                seventhpigchange.running = false
+                seventhpig = false
+            }
+        }
+    }
+
+    Timer{
+        id:timing
+        interval: 1000
+        running: false
+        repeat: true
+        onTriggered: {
+            usetime++
+        }
+    }
+
+    Timer{
+        id:line
+        interval: 1
+        repeat: true
+        running: false
+        onTriggered: {
+            if((entityManager.getEntityById(resetfirstredbird)).isfly === false){
+                linepointx = (entityManager.getEntityById(resetfirstredbird)).x
+                linepointy = (entityManager.getEntityById(resetfirstredbird)).y
+            }else if((entityManager.getEntityById(resetfirstyellowbird)).isfly === false && (entityManager.getEntityById(resetfirstyellowbird)).isready === false){
+                linepointx = 72
+                linepointy = 480
+                line.running = false
+                oneyellowline.running = true
+            }
+        }
+    }
+
+    Timer{
+        id:oneyellowline
+        interval: 1
+        repeat: true
+        running: false
+        onTriggered: {
+            if((entityManager.getEntityById(resetfirstyellowbird)).isfly === false && (entityManager.getEntityById(resetfirstyellowbird)).isready === false){
+                linepointx = 72
+                linepointy = 480
+            }else if((entityManager.getEntityById(resetfirstyellowbird)).isfly === false && (entityManager.getEntityById(resetfirstyellowbird)).isready === true){
+
+                linepointx = (entityManager.getEntityById(resetfirstyellowbird)).x
+                linepointy = (entityManager.getEntityById(resetfirstyellowbird)).y
+            }else if((entityManager.getEntityById(resetsecondyellowbird)).isfly === false && (entityManager.getEntityById(resetsecondyellowbird)).isready === false){
+                linepointx = 72
+                linepointy = 480
+                oneyellowline.running = false
+                twoyellowline.running = true
+            }
+        }
+    }
+
+    Timer{
+        id:twoyellowline
+        interval: 1
+        repeat: true
+        running: false
+        onTriggered: {
+            if((entityManager.getEntityById(resetsecondyellowbird)).isfly === false && (entityManager.getEntityById(resetsecondyellowbird)).isready === false){
+                linepointx = 72
+                linepointy = 480
+            }else if((entityManager.getEntityById(resetsecondyellowbird)).isfly === false && (entityManager.getEntityById(resetsecondyellowbird)).isready === true){           
+                linepointx = (entityManager.getEntityById(resetsecondyellowbird)).x
+                linepointy = (entityManager.getEntityById(resetsecondyellowbird)).y
+            }else{
+                linepointx = 72
+                linepointy = 480
+                twoyellowline.running = false
+            }
+        }
+    }
+
+
     function resetgame(){
+        check.restart()
+        firstredchange.restart()
+        firstyellowchange.restart()
+        secondyellowchange.restart()
+        firstpigchange.restart()
+        secondpigchange.restart()
+        thirdpigchange.restart()
+        forthpigchange.restart()
+        fifthpigchange.restart()
+        sixthpigchange.restart()
+        seventhpigchange.restart()
+        usetime = 0
+        timing.restart()
+
         firstpig = true
         secondpig = true
         thirdpig = true
@@ -579,7 +568,9 @@ SceneBase{
         firstredbird = true
         firstyellowbird = true
         secondyellowbird = true
-        toRemove = ["pig1","pig2","pig3","pig4","pig5","pig6","pig7"]
+
+        //Remove entity
+        toRemove = ["pig1","pig2","pig3","pig4","pig5","pig6"]
         entityManager.removeEntitiesByFilter(toRemove)
         toRemove = ["wood"]
         entityManager.removeEntitiesByFilter(toRemove)
@@ -588,116 +579,119 @@ SceneBase{
         toRemove = ["yellowBird1","yellowBird2"]
         entityManager.removeEntitiesByFilter(toRemove)
 
-        entityManager.createEntityFromUrlWithProperties(
+        //Generate components
+        resetfirstyellowbird = entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Yellowbird.qml"),
-                    {entityType:"yellowBird1",width: 30,height: 30,id:yellowbird,x:200,y:container.height-120});
+                    {entityType:"yellowBird1",width:30,height: 30,x:170,y:container.height-100});
 
-        entityManager.createEntityFromUrlWithProperties(
+        resetsecondyellowbird = entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Yellowbird.qml"),
-                    {entityType:"yellowBird2",width: 30,height: 30,id:yellowbird1,x:150,y:container.height-120});
+                    {entityType:"yellowBird2",width: 30,height: 30,x:137,y:container.height-100});
 
-        entityManager.createEntityFromUrlWithProperties(
+        resetfirstredbird = entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Redbird.qml"),
-                    {id:redBird,x:72,y:container.height-160});
+                    {x:72,y:container.height-160});
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Wood.qml"),
-                    {id:wood1,x:500,y:container.height-70});
+                    {x:500,y:container.height-70});
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Wood.qml"),
-                    {id:wood2,x:510,y:container.height-170,width:100,rotation:90});
+                    {x:510,y:container.height-170,width:100,rotation:90});
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Wood.qml"),
-                    {id:wood3,x:620,y:container.height-170,width:100,rotation:90});
+                    {x:620,y:container.height-170,width:100,rotation:90});
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Wood.qml"),
-                    {id:wood4,x:500,y:container.height-180});
+                    {x:500,y:container.height-180});
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Wood.qml"),
-                    {id:wood5,x:510,y:container.height-280,width:100,rotation:90});
+                    {x:510,y:container.height-280,width:100,rotation:90});
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Wood.qml"),
-                    {id:wood6,x:620,y:container.height-280,width:100,rotation:90});
+                    {x:620,y:container.height-280,width:100,rotation:90});
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Wood.qml"),
-                    {id:wood7,x:500,y:container.height-290});
+                    {x:500,y:container.height-290});
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Wood.qml"),
-                    {id:wood8,x:750,y:container.height-70});
+                    {x:750,y:container.height-70});
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Wood.qml"),
-                    {id:wood9,x:760,y:container.height-170,width:100,rotation:90});
+                    {x:760,y:container.height-170,width:100,rotation:90});
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Wood.qml"),
-                    {id:wood10,x:870,y:container.height-170,width:100,rotation:90});
+                    {x:870,y:container.height-170,width:100,rotation:90});
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Wood.qml"),
-                    {id:wood11,x:750,y:container.height-180,density:5});
+                    {x:750,y:container.height-180,density:5});
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Wood.qml"),
-                    {id:wood12,x:760,y:container.height-280,width:100,rotation:90});
+                    {x:760,y:container.height-280,width:100,rotation:90});
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Wood.qml"),
-                    {id:wood13,x:870,y:container.height-280,width:100,rotation:90});
+                    {x:870,y:container.height-280,width:100,rotation:90});
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Wood.qml"),
-                    {id:wood14,x:750,y:container.height-290});
+                    {x:750,y:container.height-290});
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Wood.qml"),
-                    {id:wood15,x:562,y:container.height-380,width:100,rotation:120,density:0.1});
+                    {x:562,y:container.height-380,width:100,rotation:120,density:0.1});
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Wood.qml"),
-                    {id:wood16,x:570,y:container.height-385,width:100,rotation:60,density:0.1});
+                    {x:570,y:container.height-385,width:100,rotation:60,density:0.1});
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Wood.qml"),
-                    {id:wood17,x:812,y:container.height-380,width:100,rotation:120,density:0.1});
+                    {x:812,y:container.height-380,width:100,rotation:120,density:0.1});
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Wood.qml"),
-                    {id:wood18,x:820,y:container.height-385,width:100,rotation:60,density:0.1});
+                    {x:820,y:container.height-385,width:100,rotation:60,density:0.1});
 
-        entityManager.createEntityFromUrlWithProperties(
+        resetfirstpig = entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Pig.qml"),
-                    {entityType:"pig1",id:thepig1,y:container.height-102,x:560});
+                    {entityType:"pig1",y:container.height-102,x:560});
 
-        entityManager.createEntityFromUrlWithProperties(
+        resetsecondpig = entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Pig.qml"),
-                    {entityType:"pig2",id:thepig2,y:container.height-202,x:560});
+                    {entityType:"pig2",y:container.height-202,x:560});
 
-        entityManager.createEntityFromUrlWithProperties(
+        resetthirdpig = entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Pig.qml"),
-                    {entityType:"pig3",id:thepig3,y:container.height-102,x:810});
+                    {entityType:"pig3",y:container.height-102,x:810});
 
-        entityManager.createEntityFromUrlWithProperties(
+        resetforthpig = entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Pig.qml"),
-                    {entityType:"pig4",id:thepig4,y:container.height-202,x:810});
+                    {entityType:"pig4",y:container.height-202,x:810});
 
-        entityManager.createEntityFromUrlWithProperties(
+        resetfifthpig = entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Pig.qml"),
-                    {entityType:"pig5",id:thepig5,y:container.height-310,x:570,width:20,height:20});
+                    {entityType:"pig5",y:container.height-310,x:570,width:20,height:20});
 
-        entityManager.createEntityFromUrlWithProperties(
+        resetsixthpig = entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl("../Entity/Pig.qml"),
-                    {entityType:"pig6",id:thepig6,y:container.height-310,x:800,width:20,height:20});
+                    {entityType:"pig6",y:container.height-310,x:800,width:20,height:20});
 
-//        entityManager.createEntityFromUrlWithProperties(
-//                    Qt.resolvedUrl("../Entity/Pig.qml"),
-//                    {entityId:"pig7",id:thepig7,y:container.height-310,x:800,width:20,height:20});
+       resetseventhpig = entityManager.createEntityFromUrlWithProperties(
+                    Qt.resolvedUrl("../Entity/Pig.qml"),
+                    {entityId:"pig7",y:container.height-100,x:680,width:20,height:20});
+
+        line.restart()
     }
 }
